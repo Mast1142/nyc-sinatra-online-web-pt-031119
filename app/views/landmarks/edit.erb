@@ -1,6 +1,48 @@
 <h2>Edit Historical Landmark</h2>
 
-<!-- add content here -->
+<h2>Edit a Figure/Title/Landmark</h2>
+
+<form action='/landmarks/<%=@landmark.id%>' method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+  Name
+  <input type='text' name="figure[name]" id="figure_name"/>
+  <br>
+
+  <h2>Titles</h2>
+  <br>
+  <%@titles.each do |title|%>
+    <%=title.name%><input type='checkbox' name="figure[title_ids][]" id="<%=title.id%>" value="<%=title.id%>"><br>
+  </input>
+    <%end%>
+  <br/>
+
+  <h2>Create New Title:</h2>
+  <br/>
+
+  <input type="text" name="title[name]" id="title_name"/>
+  <br/>
+
+  <h2>Landmarks</h2>
+  <br/>
+
+  <%@landmarks.each do |landmark|%>
+    <%=landmark.name%><input type="checkbox" name="figure[landmark_ids][]" id="<%=landmark.id%>" value="<%=landmark.id%>"><br>
+  </input>
+  <%end%>
+  <br>
+  <h2>Create New Landmark:</h2>
+  <br/>
+
+  Name:
+  <input type='text' name="landmark[name]" id="landmark_name"/>
+  Year:
+  <input type='text' name="landmark[year_completed]" id="landmark_year"/>
+
+
+  <input type="submit" value="Update Figure/Landmark"/>
+</form>
+
 
 <a class="button" href="/landmarks">Landmarks</a>
 <a class="button" href="/">Home</a>
